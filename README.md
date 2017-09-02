@@ -20,7 +20,20 @@ This repo contains all source and config files needed to run this applications. 
 <li>Maven will run the unit tests and build the app. The build artefact <strong>checkout-app.jar</strong> is created in the newly created target folder</li>
 <li>Build is now complete.</li>
 </ul>
+</p>
 
+<h3>Running:</h3>
+<p>
+<ul>
+<li>Change directory to <strong>target</strong></li>
+<li>Run app: <i>java -jar checkout-app.jar <comma,separated,list,of,SKUs></i></li>
+<li>App accepts the following SKUs: ipd,mbp,atv,vga</li>
+<li>Invalid SKUs will result in the app terminating.</li>
+<li>Same SKU can be repeated and will result in the quantity increasing for that SKU. </li>
+<li>Order is not important</li>
+<li>Once input, the application will calculate the cost and print out: <i>SKUs Scanned: <comma,separated,list,of,SKUs> Total expected: <calculated total cost></li>
+
+</ul>
 </p>
 
 
