@@ -26,14 +26,24 @@ import au.com.dius.store.product.VGAAdapter;
 public class AppRunner {
 
 	public static void main(String[] args) {
-		if (args.length == 0) {
-			System.out.println("Invalid Usage. At least one SKU must be provided.");
+		try {
+			if (args.length == 0) {
+				throw new IllegalArgumentException("Invalid Usage. At least one SKU must be provided.");
+			}
+
+			if (args.length > 1) {
+				throw new IllegalArgumentException("Invalid Usage. Spaces are not permitted. format to use: a,b,c,d");
+			}
+
+			CheckoutApp app = new CheckoutApp();
+			app.loadProductData();
+			app.checkout(args[0]);
+
+		} catch (IllegalArgumentException ex) {
+			System.err.println("Application Terminating::" + ex.getMessage());
 			System.exit(1);
 		}
-		
-		CheckoutApp app = new CheckoutApp();
-		app.loadProductData();
-		app.checkout(args[0]);
+
 	}
 
 }
@@ -42,26 +52,22 @@ class CheckoutApp {
 	private Checkout co;
 	private PricingRulesEngine pricingRules;
 
-	public void checkout(String args) {
-		try {
-			List<String> listOfSku = getSkuList(args);
+	public void checkout(String args) throws IllegalArgumentException {
 
-			pricingRules = new PricingRulesEngineImpl();
-			co = new Checkout(pricingRules);
+		List<String> listOfSku = getSkuList(args);
 
-			listOfSku.forEach(sku -> {
-				Item item = Products.INSTANCE.get(sku);
-				co.scan(item);
-			});
+		pricingRules = new PricingRulesEngineImpl();
+		co = new Checkout(pricingRules);
 
-			co.total();
+		listOfSku.forEach(sku -> {
+			Item item = Products.INSTANCE.get(sku);
+			co.scan(item);
+		});
 
-			printResult(listOfSku, co.getTotalCost());
+		co.total();
 
-		} catch (IllegalArgumentException ex) {
-			System.out.println("Application Terminating:" + ex.getMessage());
-			System.exit(1);
-		}
+		printResult(listOfSku, co.getTotalCost());
+
 	}
 
 	private void printResult(List<String> listOfSku, double total) {
