@@ -5,7 +5,7 @@ package au.com.dius.store.promotion;
  */
 public interface ProductPromotion {
 	/*
-	 * Takes the number of items as input as most promotions are based on the items
+	 * Takes the sku and number of items as input.
 	 */
 	double applyPromotion(String sku, int quantity);
 }
