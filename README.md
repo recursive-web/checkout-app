@@ -26,7 +26,7 @@ This repo contains all source and config files needed to run this applications. 
 <p>
 <ul>
 <li>Change directory to <strong>target</strong></li>
-<li>Run app: <i>java -jar checkout-app.jar <comma,separated,list,of,SKUs></i></li>
+<li>Run app: <i>java -jar checkout-app.jar &lt;comma,separated,list,of,SKUs&gt;</i></li>
 <li>App accepts the following SKUs: ipd,mbp,atv,vga</li>
 <li>Invalid SKUs will result in the app terminating.</li>
 <li>Same SKU can be repeated and will result in the quantity increasing for that SKU. </li>
