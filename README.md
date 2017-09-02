@@ -33,8 +33,19 @@ This repo contains all source and config files needed to run this applications. 
 <li>Same SKU can be repeated and will result in the quantity increasing for that SKU. </li>
 <li>Order is not important</li>
 <li>Once input, the application will calculate the cost and print out: <i>SKUs Scanned: &lt;comma,separated,list,of,SKUs&gt; Total expected: &lt;calculated total cost&gt;</li>
-
 </ul>
 </p>
 
+<h2>Solution Description</h2>
+<ul>
+<li>The requirements regarding how promotional prices are applied have all been realised</li>
+<li>As required, the system has been designed with SOLID principles in mind and future promotional changes can be easily done.</li>
+<li>Each promotional change has been encapsulated in its own class so side effects are contained.</li>
+<li>Each Product has a corresponding implementation of a ProductPromotion (au.com.dius.store.promotion.ProductPromotion) interface which handles the application of promotions (or not as is the case in VGAs)</li>
+<li>The pricing rules engine(au.com.dius.store.pricing.impl.PricingRulesEngineImpl) (injected to the Checkout object at instantiation) delegates the calculation of the costs to the inidividual products</li>
+<li>The pricing rules engine is not couple with the Products - product line changes will not break this class</li>
+<li>The pricing rules engine acquires Product specific promotional classed via a Factory class (au.com.dius.store.promotion.ProductPromotionFactory). This is the only class that needs updating if the product line changes.</li>
+<li>The product master data is loaded on to a cache (au.com.dius.store.cache.Products) which would probably be in persistent storage in an actual solution. It has been kept in a central location so it can be accessed by different classes. This reduces the chance for errors as well.</li>
+<li>Scanned Items are added to a Shopping Cart till the total is tallied.</li>
+</ul>
 
