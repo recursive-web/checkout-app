@@ -28,10 +28,11 @@ This repo contains all source and config files needed to run this applications. 
 <li>Change directory to <strong>target</strong></li>
 <li>Run app: <i>java -jar checkout-app.jar &lt;comma,separated,list,of,SKUs&gt;</i></li>
 <li>App accepts the following SKUs: ipd,mbp,atv,vga</li>
+<li>Note that there should NOT be a space between SKUs or after a comma</li>
 <li>Invalid SKUs will result in the app terminating.</li>
 <li>Same SKU can be repeated and will result in the quantity increasing for that SKU. </li>
 <li>Order is not important</li>
-<li>Once input, the application will calculate the cost and print out: <i>SKUs Scanned: <comma,separated,list,of,SKUs> Total expected: <calculated total cost></li>
+<li>Once input, the application will calculate the cost and print out: <i>SKUs Scanned: &lt;comma,separated,list,of,SKUs&gt; Total expected: &lt;calculated total cost&gt;</li>
 
 </ul>
 </p>
