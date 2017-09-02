@@ -32,7 +32,7 @@ This repo contains all source and config files needed to run this applications. 
 <li>Invalid SKUs will result in the app terminating.</li>
 <li>Same SKU can be repeated and will result in the quantity increasing for that SKU. </li>
 <li>Order is not important</li>
-<li>Once input, the application will calculate the cost and print out: <i>SKUs Scanned: &lt;comma,separated,list,of,SKUs&gt; Total expected: &lt;calculated total cost&gt;</li>
+<li>Once input, the application will calculate the cost and print out: <i>SKUs Scanned: &lt;comma,separated,list,of,SKUs&gt; Total expected: &lt;calculated total cost&gt;</i></li>
 </ul>
 </p>
 
@@ -47,5 +47,15 @@ This repo contains all source and config files needed to run this applications. 
 <li>The pricing rules engine acquires Product specific promotional classed via a Factory class (au.com.dius.store.promotion.ProductPromotionFactory). This is the only class that needs updating if the product line changes.</li>
 <li>The product master data is loaded on to a cache (au.com.dius.store.cache.Products) which would probably be in persistent storage in an actual solution. It has been kept in a central location so it can be accessed by different classes. This reduces the chance for errors as well.</li>
 <li>Scanned Items are added to a Shopping Cart till the total is tallied.</li>
+<li>There is comprehensive Unit Testing provided.</li>
+<li>The only frameworks used are Maven and JUnit.</li>
+</ul>
+
+<h2>Assumptions</h2>
+<ul>
+<li>It is assumed that each checkout will run in its own JVM - hence the design of the shopping cart is for a single customer at one time.</li>
+<li>Following on from this, it is also assumed that there is no concurrent activity happening</li>
+<li>Applying promotions is contained within the XXXProductPromotion class. It would also have been possible to add this functionality to the XXXProduct pojo. However, doing so would move away from the Single Responsibility model as the domain object can exist without promotions. Also, as this would interact with Other objects, testability of the PoJo becomes more complex. 
+Some would call this anaemic, but this is debatable.</li>
 </ul>
 
